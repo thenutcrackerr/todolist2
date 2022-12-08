@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
 
-function App() {
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  // 👇 코드 추가
+  const number = useSelector((state) => state.counter.number);
+
+  console.log(number); // 콘솔 추가
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {number}
+      <button
+        onClick={() => {
+          dispatch({ type: "PLUS_ONE" });
+        }}
+      >
+        + 1
+      </button>
+      <button
+        onClick={() => {
+          // 액션객체 디스패치
+          dispatch({ type: "MINUS_ONE" });
+        }}
+      >
+        - 1
+      </button>
     </div>
   );
-}
+};
 
 export default App;
